@@ -12,8 +12,14 @@
         <div class="w-full flex justify-end">
             <a href="/logout" class="bg-red-500 inline-block px-3 py-2 text-sm mb-5 outline-none rounded-md">Logout</a>
         </div>
+        <div class="flex  items-start gap-2  ">
+            <div class="w-10 h-10 bg-red-500 rounded-md"> </div>
         <h3 class="text-3xl mb-5 "> 
-           <span class="font-light"> Hello </span>, <%=user.name%>👋</h3>
+           <span class="font-light"> Hello </span>, <%=user.name%>👋</h3>    
+        </div>
+        
+        
+        
         <h5 class="mb-5"> Create your post here</h5>
         <form action="/post" method="post">
             

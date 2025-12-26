@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser');
 const userModel = require('./models/userModel')
 const postModel = require('./models/postModel')
+const multerconfig = require('./config/userconfig')
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
