@@ -74,6 +74,10 @@ app.get('/profile',isLoggedin,async (req,res)=>{
     res.render('profile',{user})
 })
 
+app.get('/profile/upload',(req,res)=>{
+    res.render('profileupload')
+})
+
 app.post('/post',isLoggedin,async (req,res)=>{
     let user = await userModel.findOne({email:req.user.email})
     let {content} = req.body;
