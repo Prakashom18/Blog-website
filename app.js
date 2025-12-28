@@ -6,12 +6,12 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser');
 const userModel = require('./models/userModel')
 const postModel = require('./models/postModel')
-const userconfig = require('./config/userconfig')
+const upload = require('./config/userconfig')
 
 app.use(express.json())
 app.use(express.static(path.join(__dirname,'public')))
 app.use(express.urlencoded({extended:true}))
-app.use(express.static(path.join(__dirname,'public')));
+// app.use(express.static(path.join(__dirname,'public')));
 app.use(cookieParser());
 
 app.set('view engine','ejs')
@@ -77,6 +77,13 @@ app.get('/profile',isLoggedin,async (req,res)=>{
 app.get('/profile/upload',(req,res)=>{
     res.render('profileupload')
 })
+
+app.post('/upload',isLoggedin,upload.single('image'),async (req,res)=>{
+   let user  = await userModel.findOne({email:req.user.email});
+   user.profilepic = req.file.filename;
+   await user.save();
+   res.redirect('/profile');
+});
 
 app.post('/post',isLoggedin,async (req,res)=>{
     let user = await userModel.findOne({email:req.user.email})
